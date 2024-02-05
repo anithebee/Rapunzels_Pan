@@ -1,6 +1,5 @@
 import streamlit as st
 from PIL import Image
-import bs4
 from bs4 import BeautifulSoup
 import requests
 
