@@ -1,6 +1,6 @@
 import streamlit as st
 from PIL import Image
-from beautifulsoup4 import BeautifulSoup
+from bs4 import BeautifulSoup
 import requests
 
 #ALLERGY SUB
