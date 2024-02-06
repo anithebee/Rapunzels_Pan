@@ -49,7 +49,7 @@ def allergy_sub(ingredient):
                 
 
     else:
-        st.write("There are no substitutes available for this. Please re-enter.")
+        st.write("Sorry! There are no common substitutes available for this. Please re-enter.")
 
 #RECIPE SEARCH
         
@@ -70,7 +70,7 @@ def search_recipe(dish_name):
                 temp = "tasty.co/recipe/" + remaining_text
                 return temp
     else:
-        return "No Recipe Found"
+        return "Sorry! A recipe for this dish isn't available. Please re-enter."
 
 #NUTR REQUIREMENTS CLASS
 class Nutr:
@@ -80,7 +80,7 @@ class Nutr:
         self.carbs = carbs
         self.fats = fats
     def __str__(self):
-        return f'Calories: {self.calories} kCal \nProteins: {self.proteins} g \nCarbs: {self.carbs} kCal \nFats: {self.fats} g'
+        return f'Calories: {self.calories} kCal, \nCarbohydrates: {self.carbs} g, \nFats: {self.fats} kCal, \nProteins: {self.proteins} g'
 
 #MAIN
 
@@ -96,14 +96,16 @@ st.header("Welcome")
 allergy = st.button("Food Substitutes", help="One-stop tool to gathering substitutes for allergies and more!")
 ingredient = st.text_input("Want to find substitutes for ingredients? Enter an ingredient here: ")
 if ingredient:
-    allergy_sub(ingredient)
+    with st.expander("List of Substitutes: "):
+        allergy_sub(ingredient)
 
 #recipe
 recipes = st.button("Recipe Finder", help="Provides the best recipes for your dishes!")
 recsearch = st.text_input("Want to find a good recipe for a dish? Enter a dish here: ")
 recipe_link = search_recipe(recsearch)
 if recsearch:
-    st.write(recipe_link)
+    with st.expander("URL: "):
+        st.write(recipe_link)
 
 #nutr req
 
