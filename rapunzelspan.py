@@ -49,7 +49,7 @@ def allergy_sub(ingredient):
                 
 
     else:
-        st.write(f"Error: Unable to fetch content. Status code: {response.status_code}.")
+        st.write("There are no substitutes available for this. Please re-enter.")
 
 #RECIPE SEARCH
         
