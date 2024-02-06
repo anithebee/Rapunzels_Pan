@@ -164,8 +164,8 @@ if age>=51 and gender=="F" :
 
 #images
 
-image = Image.open("D:\School\Invenio'24\Pascal.png")
-image2 = Image.open("D:\School\Invenio'24\Pan.png")
+image = Image.open("Pascal.png")
+image2 = Image.open("Pan.png")
 left_co, last_co = st.columns(2)
 with left_co:
     st.image(image)
