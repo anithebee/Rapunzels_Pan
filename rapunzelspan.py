@@ -96,8 +96,7 @@ st.header("Welcome")
 allergy = st.button("Food Substitutes", help="One-stop tool to gathering substitutes for allergies and more!")
 ingredient = st.text_input("Want to find substitutes for ingredients? Enter an ingredient here: ")
 if ingredient:
-    substext = st.markdown(''' :violet[List of Substitutes: "''')
-    with st.expander(substext):
+    with st.expander("List of Substitutes"):
         allergy_sub(ingredient)
 
 #recipe
