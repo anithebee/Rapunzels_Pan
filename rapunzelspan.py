@@ -90,7 +90,7 @@ st.title("Rapunzel's Pan")
 st.subheader(":dragon_face: :cooking:")
 
 st.header("Welcome")
-
+st.divider()
 #allergy
 
 allergy = st.button("Food Substitutes", help="One-stop tool to gathering substitutes for allergies and more!")
@@ -99,6 +99,7 @@ if ingredient:
     with st.expander("List of Substitutes"):
         allergy_sub(ingredient)
 
+st.divider()
 #recipe
 recipes = st.button("Recipe Finder", help="Provides the best recipes for your dishes!")
 recsearch = st.text_input("Want to find a good recipe for a dish? Enter a dish here: ")
@@ -106,7 +107,7 @@ recipe_link = search_recipe(recsearch)
 if recsearch:
     with st.expander("URL: "):
         st.write(recipe_link)
-
+st.divider()
 #nutr req
 
 req = st.button("Nutritional Requirements", help = "Find out your average daily nutritional requirements!")
