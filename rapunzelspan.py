@@ -87,9 +87,8 @@ class Nutr:
 
 st.set_page_config(page_title="Rapunzel's Pan", page_icon = ":cooking:")
 st.title("Rapunzel's Pan")
-st.subheader(":dragon_face: :cooking:")
-
-st.header("Welcome")
+st.header("Welcome! :dragon_face: :cooking:")
+st.subheader("a page for your culinary needs! have ingredients but no idea what dish to make? use our recipe finder! allergies? use the substitute generator! more features coming soon.")
 st.divider()
 #allergy
 
