@@ -166,6 +166,7 @@ with st.expander("Your Average Daily Nutritional Requirement: "):
 
 
 #images
+st.divider()
 
 image = Image.open("Pascal.png")
 image2 = Image.open("Pan.png")
