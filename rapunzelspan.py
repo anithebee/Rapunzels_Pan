@@ -113,6 +113,7 @@ st.divider()
 req = st.button("Nutritional Requirements", help = "Find out your average daily nutritional requirements!")
 age = st.number_input("Enter your age: ", step=1)
 gender = st.text_input("Enter Gender (F/M): ")
+gender.lower()
 
 #nutr req ranges
 toddler = Nutr(1000, 130, 35, 13)
@@ -138,28 +139,28 @@ with st.expander("Your Average Daily Nutritional Requirement: "):
     if age in range(9, 14):
         st.write("Average Daily Nutritional Requirements for Preteens (Ages 9-13): ")
         st.write(preteen.__str__())
-    if age in range(14, 19) and (gender=="M" or gender=="m")  :
+    if age in range(14, 19) and (gender=="m" or gender=="male"):
         st.write("Average Daily Nutritional Requirements for Male Teenagers (Ages 14-18): ")
         st.write(mteenager.__str__())
-    if age in range(14, 19) and (gender=="F" or gender=="f"):
+    if age in range(14, 19) and (gender=="f" or gender=="female"):
         st.write("Average Daily Nutritional Requirements for Female Teenagers (Ages 14-18): ")
         st.write(fteenager.__str__())
-    if age in range(19, 31) and (gender=="M" or gender=="m") :
+    if age in range(19, 31) and (gender=="m" or gender=="male"):
         st.write("Average Daily Nutritional Requirements in Male Young Adults (Ages 19-30): ")
         st.write(mYA.__str__())
-    if age in range(19, 31) and (gender=="F" or gender=="f") :
+    if age in range(19, 31) and (gender=="f" or gender=="female") :
         st.write("Average Daily Nutritional Requirements in Female Young Adults (Ages 19-30): ")
         st.write(fYA.__str__())
-    if age in range(31, 51) and (gender=="M" or gender=="m") :
+    if age in range(31, 51) and (gender=="m" or gender=="male") :
         st.write("Average Daily Nutritional Requirements in Male Adults (Ages 31-50 ): ")
         st.write(madult.__str__())
-    if age in range(31, 51) and (gender=="F"or gender=="f") :
+    if age in range(31, 51) and (gender=="f" or gender=="female") :
         st.write("Average Daily Nutritional Requirements in Female Adults (Ages 31-50 ): ")
         st.write(fadult.__str__())
-    if age>=51 and (gender=="M" or gender=="m"):
+    if age>=51 and (gender=="m" or gender=="male"):
         st.write("Average Daily Nutritional Requirements for Males aged 51+: ")
         st.write(msenior.__str__())
-    if age>=51 and (gender=="F" or gender=="f"):
+    if age>=51 and (gender=="f" or gender=="female"):
         st.write("Average Daily Nutritional Requirements for Females aged 51+: ")
         st.write(fsenior.__str__())
     
