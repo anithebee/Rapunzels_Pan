@@ -39,7 +39,7 @@ def allergy_sub(ingredient):
         parsed_data = parse_html_content(page_text)
 
         for item_list in parsed_data:
-            st.markdown(f"\n :grey[***Substitute:***] ")
+            st.markdown(f"\n :black[***Substitute:***] ")
             if len(item_list) > 1:
                 newlist = [item.replace(', ', ',').replace(',', ', ') for item in item_list]
                 final = ', '.join(newlist)
