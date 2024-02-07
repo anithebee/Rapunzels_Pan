@@ -83,12 +83,11 @@ class Nutr:
         return f'Calories: {self.calories} kCal, \nCarbohydrates: {self.carbs} g, \nFats: {self.fats} kCal, \nProteins: {self.proteins} g'
 
 #MAIN
-
+st.set_page_config(page_title="Rapunzel's Pan", page_icon = ":cooking:")
 left, center, right = st.columns(3)
 with center:
     st.title("Rapunzel's Pan")
     st.header("Welcome! :dragon_face: :cooking:")
-st.set_page_config(page_title="Rapunzel's Pan", page_icon = ":cooking:")
 
 st.write("a page for your culinary needs! have ingredients but no idea what dish to make? use our recipe finder! allergies? use the substitute generator! more features coming soon.")
 st.divider()
