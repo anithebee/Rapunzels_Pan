@@ -84,7 +84,7 @@ class Nutr:
 
 #MAIN
 st.set_page_config(page_title="Rapunzel's Pan", page_icon = ":cooking:")
-left, center, right = st.columns(3)
+left, center, right = st.columns([1,3,1])
 with center:
     st.title("Rapunzel's Pan")
     st.header("Welcome! :dragon_face: :cooking:")
