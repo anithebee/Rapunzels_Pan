@@ -113,7 +113,7 @@ st.divider()
 req = st.button("Nutritional Requirements", help = "Find out your average daily nutritional requirements!")
 age = st.number_input("Enter your age: ", step=1)
 gender = st.text_input("Enter Gender (F/M): ")
-gender.lower()
+gender = gender.lower()
 
 #nutr req ranges
 toddler = Nutr(1000, 130, 35, 13)
