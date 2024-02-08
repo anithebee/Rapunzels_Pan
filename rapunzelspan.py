@@ -4,6 +4,22 @@ from bs4 import BeautifulSoup
 import requests
 import re
 
+#NUTR CONTENT
+def get_nutritional_info_url(food_name):
+    base_url = "https://fdc.nal.usda.gov/fdc-app.html#/?query="
+    search_url = f"{base_url}{food_name}"
+
+    response = requests.get(search_url)
+
+    if response.status_code == 200:
+        if food_name.replace(" ", "%20").lower() in response.url.lower():
+            return response.url
+        else:
+            print("No nutritional information found for this food.")
+    else:
+        print("Failed to retrieve search results.")
+
+
 #ALLERGY SUB
 
 def parse_html_content(html_content):
@@ -68,7 +84,7 @@ def search_recipe(dish_name):
             for instance_index in instances:
                 next_quote_index = instance_index + len(search_string)
                 remaining_text = page_text[next_quote_index:page_text.find('"', next_quote_index)]
-                temp = "tasty.co/recipe/" + remaining_text
+                temp = "https://tasty.co/recipe/" + remaining_text
                 return temp
     else:
         return "Sorry! A recipe for this dish isn't available. Please re-enter."
@@ -256,6 +272,16 @@ for ingredient in ingredients:
                 break
     else:
         st.write("No recipe found on any website for this ingredient.")
+
+st.divider()
+
+#nutr content
+food_name = st.text_input("Enter the name of the food/ingredient/dish: ")
+
+nutritional_info_url = get_nutritional_info_url(food_name)
+
+if nutritional_info_url:
+    print("***Nutritional information URL:***", nutritional_info_url)
 
 
 #images
