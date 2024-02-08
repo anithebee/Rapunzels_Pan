@@ -265,14 +265,14 @@ for ingredient in ingredients:
                     for index, ingredient in enumerate(recipe_ingredients, start=1):
                         st.write(f"{index}. {ingredient}")
                     break
-        else:
-            recipe_url, recipe_name, recipe_ingredients = parser_recipe(ingredient, website)
-            if recipe_url != "No Recipe Found":
-                st.write(f"Recipe from {website}: {recipe_name} ({recipe_url})")
-                st.write("Additional ingredients required:")  # Changed "Ingredients:" to "Additional ingredients required:"
-                for index, ingredient in enumerate(recipe_ingredients, start=1):
-                    st.write(f"{index}. {ingredient}")
-                break
+            else:
+                recipe_url, recipe_name, recipe_ingredients = parser_recipe(ingredient, website)
+                if recipe_url != "No Recipe Found":
+                    st.write(f"Recipe from {website}: {recipe_name} ({recipe_url})")
+                    st.write("Additional ingredients required:")  # Changed "Ingredients:" to "Additional ingredients required:"
+                    for index, ingredient in enumerate(recipe_ingredients, start=1):
+                        st.write(f"{index}. {ingredient}")
+                    break
         else:
             st.write("No recipe found on any website for this ingredient.")
 
