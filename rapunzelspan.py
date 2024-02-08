@@ -166,9 +166,7 @@ with center:
     st.title("Rapunzel's Pan")
     st.header("Welcome! :dragon_face: :cooking: :bowl_with_spoon:")
 
-st.write("a page for your culinary needs! have ingredients but no idea what dish to make? use our recipe finder! allergies? use the substitute generator! more features coming soon.")
-with center:
-    st.write("\tby anita and riti :duck:")
+st.write("a page for your culinary needs! have ingredients but no idea what dish to make? use our recipe finder! allergies? use the substitute generator! more features coming soon - \n anita and riti. :duck:")
 st.divider()
 #allergy
 
