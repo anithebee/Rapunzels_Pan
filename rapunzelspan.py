@@ -232,7 +232,7 @@ dishideas = st.button("Dish Ideas", help="Stuck with random ingredients? Find re
 dishinputnum = st.number_input("Enter the number of ingredients you have: ", step=1)
 ingredients = []
 if dishinputnum:
-    for i in range(num_ingredients):
+    for i in range(dishinputnum):
         ingredient = input(f"Enter ingredient #{i + 1}: ")
         ingredients.append(ingredient)
     for ingredient in ingredients:
