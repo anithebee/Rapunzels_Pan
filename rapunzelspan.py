@@ -233,8 +233,8 @@ dishinputnum = st.number_input("Enter the number of ingredients you have: ", ste
 ingredients = []
 if dishinputnum:
     for i in range(num_ingredients):
-    ingredient = input(f"Enter ingredient #{i + 1}: ")
-    ingredients.append(ingredient)
+        ingredient = input(f"Enter ingredient #{i + 1}: ")
+        ingredients.append(ingredient)
     for ingredient in ingredients:
         st.write(f"\nRecipe using {ingredient}:")  # Changed "for" to "using"
     for website in websites:
