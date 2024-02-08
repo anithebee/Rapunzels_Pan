@@ -2,6 +2,7 @@ import streamlit as st
 from PIL import Image
 from bs4 import BeautifulSoup
 import requests
+import re
 
 #ALLERGY SUB
 
@@ -72,6 +73,65 @@ def search_recipe(dish_name):
     else:
         return "Sorry! A recipe for this dish isn't available. Please re-enter."
 
+#DISH IDEAS
+def get_recipe_ingredients(url):
+    response = requests.get(url)
+    if response.status_code == 200:
+        soup = BeautifulSoup(response.text, 'html.parser')
+        ingredients_section = soup.find('div', class_='ingredients__section')
+        if ingredients_section:
+            ingredients_list = ingredients_section.find_all('li', class_='ingredient')
+            ingredients = [ingredient.get_text(strip=True) for ingredient in ingredients_list]
+            return ingredients
+    return []
+
+def subtract_ingredient(ingredient, recipe_url):
+    ingredients = get_recipe_ingredients(recipe_url)
+    if ingredients:
+        # WE PRAY FOR PARTIAL MATCH <333
+        for idx, item in enumerate(ingredients):
+            if re.search(ingredient, item, re.IGNORECASE):
+                ingredients.pop(idx)
+                return ingredients
+        print(f"The ingredient '{ingredient}' is not present in the recipe.")
+    else:
+        print("Failed to retrieve recipe ingredients.")
+    return []
+def parser_recipe(ingredient, url):
+    query = ingredient.replace(' ', '%20')
+    response = requests.get(url + query)
+
+    if response.status_code == 200:
+        soup = BeautifulSoup(response.text, 'html.parser')
+        search_string = '/recipe/'
+        page_text = response.text
+        instances = [i for i in range(len(page_text)) if page_text.startswith(search_string, i)]
+        if instances:
+            for instance_index in instances:
+                next_quote_index = instance_index + len(search_string)
+                remaining_text = page_text[next_quote_index:page_text.find('"', next_quote_index)]
+                recipe_url = f"https://tasty.co{search_string}{remaining_text}"
+                recipe_response = requests.get(recipe_url)
+                if recipe_response.status_code == 200:
+                    recipe_soup = BeautifulSoup(recipe_response.text, 'html.parser')
+                    ingredients_section = recipe_soup.find('div', class_='ingredients__section')
+                    if ingredients_section:
+                        ingredients_list = ingredients_section.find_all('li', class_='ingredient')
+                        ingredients = [ingredient.get_text(strip=True) for ingredient in ingredients_list]
+                        ingredients = subtract_ingredient(ingredient, recipe_url)
+                        return recipe_url, remaining_text, ingredients
+        return "No Recipe Found", "", []
+    else:
+        return "No Recipe Found", "", []
+
+websites = [
+    "https://tasty.co/search?q=",
+    "https://www.allrecipes.com/search/results/?wt=",
+    "https://www.foodnetwork.com/search/",
+    "https://www.yummly.com/recipes?q=",
+    "https://www.epicurious.com/search/",
+    "https://www.bbcgoodfood.com/search/recipes?q="
+]
 #NUTR REQUIREMENTS CLASS
 class Nutr:
     def __init__(self, calories, carbs, fats, proteins):
@@ -164,6 +224,36 @@ with st.expander("Your Average Daily Nutritional Requirement: "):
         st.write("Average Daily Nutritional Requirements for Females aged 51+: ")
         st.write(fsenior.__str__())
     
+st.divider()
+#dish ideas
+dishideas = st.button("Dish Ideas", help="Stuck with random ingredients? Find recipe ideas!")
+dishinputnum = st.number_input("Enter the number of ingredients you have: ")
+if dishinputnum:
+    ingredients = []
+    for i in range(dishinputnum):
+    ingredient = st.text_input(f"Enter ingredient #{i + 1}: ")
+    ingredients.append(ingredient)
+    for ingredient in ingredients:
+    print(f"\nRecipe using {ingredient}:")  # Changed "for" to "using"
+    for website in websites:
+        if website == "https://tasty.co/search?q=":
+            recipe_url, recipe_name, recipe_ingredients = search_recipe(ingredient, website)
+            if recipe_url != "No Recipe Found":
+                st.write(f"Recipe from Tasty: {recipe_name} ({recipe_url})")
+                st.write("Additional ingredients required:")  # Changed "Ingredients:" to "Additional ingredients required:"
+                for index, ingredient in enumerate(recipe_ingredients, start=1):
+                    st.write(f"{index}. {ingredient}")
+                break
+        else:
+            recipe_url, recipe_name, recipe_ingredients = search_recipe(ingredient, website)
+            if recipe_url != "No Recipe Found":
+                st.write(f"Recipe from {website}: {recipe_name} ({recipe_url})")
+                st.write("Additional ingredients required:")  # Changed "Ingredients:" to "Additional ingredients required:"
+                for index, ingredient in enumerate(recipe_ingredients, start=1):
+                    st.write(f"{index}. {ingredient}")
+                break
+    else:
+        st.write("No recipe found on any website for this ingredient.")
 
 
 #images
@@ -176,5 +266,3 @@ with left_co:
     st.image(image)
 with last_co:
     st.image(image2)
-
-
