@@ -239,7 +239,7 @@ if dishinputnum:
         print(f"\nRecipe using {ingredient}:")  # Changed "for" to "using"
     for website in websites:
         if website == "https://tasty.co/search?q=":
-                recipe_url, recipe_name, recipe_ingredients = search_recipe(ingredient, website)
+                recipe_url, recipe_name, recipe_ingredients = parser_recipe(ingredient, website)
                 if recipe_url != "No Recipe Found":
                     st.write(f"Recipe from Tasty: {recipe_name} ({recipe_url})")
                     st.write("Additional ingredients required:")  # Changed "Ingredients:" to "Additional ingredients required:"
@@ -247,7 +247,7 @@ if dishinputnum:
                         st.write(f"{index}. {ingredient}")
                         break
         else:
-            recipe_url, recipe_name, recipe_ingredients = search_recipe(ingredient, website)
+            recipe_url, recipe_name, recipe_ingredients = parser_recipe(ingredient, website)
             if recipe_url != "No Recipe Found":
                 st.write(f"Recipe from {website}: {recipe_name} ({recipe_url})")
                 st.write("Additional ingredients required:")  # Changed "Ingredients:" to "Additional ingredients required:"
