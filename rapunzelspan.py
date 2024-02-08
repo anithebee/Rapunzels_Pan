@@ -156,6 +156,7 @@ st.divider()
 allergy = st.button("Food Substitutes", help="One-stop tool to gathering substitutes for allergies and more!")
 ingredient = st.text_input("Want to find substitutes for ingredients? Enter an ingredient here: ")
 if ingredient:
+    
     with st.expander("List of Substitutes"):
         allergy_sub(ingredient)
 
@@ -231,8 +232,8 @@ dishinputnum = st.number_input("Enter the number of ingredients you have: ")
 if dishinputnum:
     ingredients = []
     for i in range(dishinputnum):
-    ingredient = st.text_input(f"Enter ingredient #{i + 1}: ")
-    ingredients.append(ingredient)
+        ingredient = st.text_input(f"Enter ingredient #{i + 1}: ")
+        ingredients.append(ingredient)
     for ingredient in ingredients:
     print(f"\nRecipe using {ingredient}:")  # Changed "for" to "using"
     for website in websites:
