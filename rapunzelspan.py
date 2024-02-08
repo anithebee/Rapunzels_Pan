@@ -255,8 +255,8 @@ if dishinputnum:
                         for index, ingredient in enumerate(recipe_ingredients, start=1):
                             st.write(f"{index}. {ingredient}")
                         break
-             else:
-                 st.write("No recipe found on any website for this ingredient.")
+            else:
+                st.write("No recipe found on any website for this ingredient.")
 
 
 #images
