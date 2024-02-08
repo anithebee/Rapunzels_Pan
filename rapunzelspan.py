@@ -230,13 +230,13 @@ st.divider()
 #dish ideas
 dishideas = st.button("Dish Ideas", help="Stuck with random ingredients? Find recipe ideas!")
 dishinputnum = st.number_input("Enter the number of ingredients you have: ", step=1)
-ingredients = []
 if dishinputnum:
+    ingredients = []
     for i in range(dishinputnum):
-        ingredient = input(f"Enter ingredient #{i + 1}: ")
-        ingredients.append(ingredient)
-    for ingredient in ingredients:
-        st.write(f"\nRecipe using {ingredient}:")  # Changed "for" to "using"
+    ingredient = st.text_input(f"Enter ingredient #{i + 1}: ")
+    ingredients.append(ingredient)
+for ingredient in ingredients:
+    st.write(f"\nRecipe using {ingredient}:")  # Changed "for" to "using"
     for website in websites:
         if website == "https://tasty.co/search?q=":
             recipe_url, recipe_name, recipe_ingredients = parser_recipe(ingredient, website)
@@ -256,7 +256,7 @@ if dishinputnum:
                 break
     else:
         st.write("No recipe found on any website for this ingredient.")
-    
+
 
 #images
 st.divider()
