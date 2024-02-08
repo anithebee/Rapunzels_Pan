@@ -15,9 +15,9 @@ def get_nutritional_info_url(food_name):
         if food_name.replace(" ", "%20").lower() in response.url.lower():
             return response.url
         else:
-            print("No nutritional information found for this food.")
+            st.write("No nutritional information found for this food.")
     else:
-        print("Failed to retrieve search results.")
+        st.write("Failed to retrieve search results.")
 
 
 #ALLERGY SUB
@@ -281,7 +281,7 @@ food_name = st.text_input("Enter the name of the food/ingredient/dish: ")
 nutritional_info_url = get_nutritional_info_url(food_name)
 
 if nutritional_info_url:
-    print("***Nutritional information URL:***", nutritional_info_url)
+    st.write("***Nutritional information URL:***", nutritional_info_url)
 
 
 #images
