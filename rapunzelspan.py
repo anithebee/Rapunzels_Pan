@@ -97,6 +97,7 @@ def subtract_ingredient(ingredient, recipe_url):
     else:
         print("Failed to retrieve recipe ingredients.")
     return []
+
 def parser_recipe(ingredient, url):
     query = ingredient.replace(' ', '%20')
     response = requests.get(url + query)
@@ -234,27 +235,28 @@ if dishinputnum:
     for i in range(dishinputnum):
         ingredient = st.text_input(f"Enter ingredient #{i + 1}: ")
         ingredients.append(ingredient)
-    for ingredient in ingredients:
-        st.write(f"\nRecipe using {ingredient}:")  # Changed "for" to "using"
-    for website in websites:
-        if website == "https://tasty.co/search?q=":
-            recipe_url, recipe_name, recipe_ingredients = parser_recipe(ingredient, website)
-            if recipe_url != "No Recipe Found":
-                st.write(f"Recipe from Tasty: {recipe_name} ({recipe_url})")
-                st.write("Additional ingredients required:")  # Changed "Ingredients:" to "Additional ingredients required:"
-                for index, ingredient in enumerate(recipe_ingredients, start=1):
-                    st.write(f"{index}. {ingredient}")
-                break
-        else:
-            recipe_url, recipe_name, recipe_ingredients = search_recipe(ingredient, website)
-            if recipe_url != "No Recipe Found":
-                st.write(f"Recipe from {website}: {recipe_name} ({recipe_url})")
-                st.write("Additional ingredients required:")  # Changed "Ingredients:" to "Additional ingredients required:"
-                for index, ingredient in enumerate(recipe_ingredients, start=1):
-                    st.write(f"{index}. {ingredient}")
-                break
-    else:
-        st.write("No recipe found on any website for this ingredient.")
+        if ingredient:
+            for ingredient in ingredients:
+                st.write(f"\nRecipe using {ingredient}:")  # Changed "for" to "using"
+            for website in websites:
+                if website == "https://tasty.co/search?q=":
+                    recipe_url, recipe_name, recipe_ingredients = parser_recipe(ingredient, website)
+                if recipe_url != "No Recipe Found":
+                    st.write(f"Recipe from Tasty: {recipe_name} ({recipe_url})")
+                    st.write("Additional ingredients required:")  # Changed "Ingredients:" to "Additional ingredients required:"
+                    for index, ingredient in enumerate(recipe_ingredients, start=1):
+                        st.write(f"{index}. {ingredient}")
+                        break
+                else:
+                    recipe_url, recipe_name, recipe_ingredients = search_recipe(ingredient, website)
+                    if recipe_url != "No Recipe Found":
+                        st.write(f"Recipe from {website}: {recipe_name} ({recipe_url})")
+                        st.write("Additional ingredients required:")  # Changed "Ingredients:" to "Additional ingredients required:"
+                        for index, ingredient in enumerate(recipe_ingredients, start=1):
+                            st.write(f"{index}. {ingredient}")
+                        break
+             else:
+                 st.write("No recipe found on any website for this ingredient.")
 
 
 #images
