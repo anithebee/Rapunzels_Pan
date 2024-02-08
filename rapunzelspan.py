@@ -166,7 +166,7 @@ with center:
     st.title("Rapunzel's Pan")
     st.header("Welcome! :dragon_face: :cooking: :bowl_with_spoon:")
 
-st.write("a page for your culinary needs! have ingredients but no idea what dish to make? use our recipe finder! allergies? use the substitute generator! more features coming soon - \n anita and riti. :duck:")
+st.write("a page for your culinary needs! have ingredients but no idea what dish to make? use our recipe finder! allergies? use the substitute generator! more features coming soon - \n anita and riti.")
 st.divider()
 #allergy
 
@@ -252,6 +252,7 @@ if dishinputnum:
         ingredient = st.text_input(f"Enter ingredient #{i + 1}: ")
         ingredients.append(ingredient)
 for ingredient in ingredients:
+    st.divider()
     st.write(f"\n***Recipe using*** {ingredient}:")  # Changed "for" to "using"
     for website in websites:
         if website == "https://tasty.co/search?q=":
