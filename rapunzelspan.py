@@ -235,25 +235,27 @@ if dishinputnum:
     for i in range(num_ingredients):
     ingredient = input(f"Enter ingredient #{i + 1}: ")
     ingredients.append(ingredient)
+    for ingredient in ingredients:
+        st.write(f"\nRecipe using {ingredient}:")  # Changed "for" to "using"
     for website in websites:
         if website == "https://tasty.co/search?q=":
             recipe_url, recipe_name, recipe_ingredients = parser_recipe(ingredient, website)
             if recipe_url != "No Recipe Found":
-                print(f"Recipe from Tasty: {recipe_name} ({recipe_url})")
-                print("Additional ingredients required:")  # Changed "Ingredients:" to "Additional ingredients required:"
+                st.write(f"Recipe from Tasty: {recipe_name} ({recipe_url})")
+                st.write("Additional ingredients required:")  # Changed "Ingredients:" to "Additional ingredients required:"
                 for index, ingredient in enumerate(recipe_ingredients, start=1):
-                    print(f"{index}. {ingredient}")
+                    st.write(f"{index}. {ingredient}")
                 break
         else:
             recipe_url, recipe_name, recipe_ingredients = parser_recipe(ingredient, website)
             if recipe_url != "No Recipe Found":
-                print(f"Recipe from {website}: {recipe_name} ({recipe_url})")
-                print("Additional ingredients required:")  # Changed "Ingredients:" to "Additional ingredients required:"
+                st.write(f"Recipe from {website}: {recipe_name} ({recipe_url})")
+                st.write("Additional ingredients required:")  # Changed "Ingredients:" to "Additional ingredients required:"
                 for index, ingredient in enumerate(recipe_ingredients, start=1):
-                    print(f"{index}. {ingredient}")
+                    st.write(f"{index}. {ingredient}")
                 break
     else:
-        print("No recipe found on any website for this ingredient.")
+        st.write("No recipe found on any website for this ingredient.")
     
 
 #images
