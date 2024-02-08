@@ -85,7 +85,7 @@ def search_recipe(dish_name):
                 next_quote_index = instance_index + len(search_string)
                 remaining_text = page_text[next_quote_index:page_text.find('"', next_quote_index)]
                 temp = "https://tasty.co/recipe/" + remaining_text
-                return temp
+                return st.markdown(grey:[temp])
     else:
         return "Sorry! A recipe for this dish isn't available. Please re-enter."
 
@@ -276,12 +276,13 @@ for ingredient in ingredients:
 st.divider()
 
 #nutr content
+nutrcontent = st.button("Nutritional Content", help="Don't know the nutritional value of your food? Enter a dish or ingredient and find out!")
 food_name = st.text_input("Enter the name of the food/ingredient/dish: ")
 
 nutritional_info_url = get_nutritional_info_url(food_name)
-
-if nutritional_info_url:
-    st.write("***Nutritional information URL:***", nutritional_info_url)
+with st.expander("URL: "):
+    if nutritional_info_url:
+        st.markdown("***Nutritional information URL:***", grey:[nutritional_info_url])
 
 
 #images
