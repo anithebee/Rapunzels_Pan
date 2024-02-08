@@ -250,11 +250,13 @@ ingredients = []
 if dishinputnum:
     for i in range(dishinputnum):
         ingredient = st.text_input(f"Enter ingredient #{i + 1}: ")
-        ingredients.append(ingredient)
+        ingredients.append(ingredient) 
+        
 for ingredient in ingredients:
     st.divider()
     st.write(f"\n***Recipe using*** {ingredient}:")  # Changed "for" to "using"
-    for website in websites:
+    with st.expander("Recipes: "):
+        for website in websites:
         if website == "https://tasty.co/search?q=":
             recipe_url, recipe_name, recipe_ingredients = parser_recipe(ingredient, website)
             if recipe_url != "No Recipe Found":
