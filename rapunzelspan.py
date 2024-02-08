@@ -168,7 +168,7 @@ with center:
 
 st.write("a page for your culinary needs! have ingredients but no idea what dish to make? use our recipe finder! allergies? use the substitute generator! more features coming soon.")
 with center:
-    st.write("by anita and riti :duck:")
+    st.write("\tby anita and riti :duck:")
 st.divider()
 #allergy
 
