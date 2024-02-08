@@ -228,7 +228,7 @@ with st.expander("Your Average Daily Nutritional Requirement: "):
 st.divider()
 #dish ideas
 dishideas = st.button("Dish Ideas", help="Stuck with random ingredients? Find recipe ideas!")
-dishinputnum = st.number_input("Enter the number of ingredients you have: ")
+dishinputnum = st.number_input("Enter the number of ingredients you have: ", step=1)
 if dishinputnum:
     ingredients = []
     for i in range(dishinputnum):
