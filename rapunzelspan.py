@@ -164,7 +164,7 @@ st.set_page_config(page_title="Rapunzel's Pan", page_icon = ":cooking:")
 left, center, right = st.columns([1,3,1])
 with center:
     st.title("Rapunzel's Pan")
-    st.header("Welcome :ribbon: :cooking: 🥝 :bowl_with_spoon:")
+    st.header("Welcome:ribbon::cooking:🥝:bowl_with_spoon:")
 
 st.write("Have ingredients but no idea what dish to make? Use our recipe finder! Allergies? Use the substitute generator! A page for all your culinary needs - \n Anita and Riti.")
 st.divider()
