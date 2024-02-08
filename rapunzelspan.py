@@ -230,33 +230,31 @@ st.divider()
 #dish ideas
 dishideas = st.button("Dish Ideas", help="Stuck with random ingredients? Find recipe ideas!")
 dishinputnum = st.number_input("Enter the number of ingredients you have: ", step=1)
+ingredients = []
 if dishinputnum:
-    ingredients = []
-    for i in range(dishinputnum):
-        ingredient = st.text_input(f"Enter ingredient #{i + 1}: ")
-        ingredients.append(ingredient)
-    for ingredient in ingredients:
-        print(f"\nRecipe using {ingredient}:")  # Changed "for" to "using"
+    for i in range(num_ingredients):
+    ingredient = input(f"Enter ingredient #{i + 1}: ")
+    ingredients.append(ingredient)
     for website in websites:
         if website == "https://tasty.co/search?q=":
-                recipe_url, recipe_name, recipe_ingredients = parser_recipe(ingredient, website)
-                if recipe_url != "No Recipe Found":
-                    st.write(f"Recipe from Tasty: {recipe_name} ({recipe_url})")
-                    st.write("Additional ingredients required:")  # Changed "Ingredients:" to "Additional ingredients required:"
-                    for index, ingredient in enumerate(recipe_ingredients, start=1):
-                        st.write(f"{index}. {ingredient}")
-                        break
+            recipe_url, recipe_name, recipe_ingredients = parser_recipe(ingredient, website)
+            if recipe_url != "No Recipe Found":
+                print(f"Recipe from Tasty: {recipe_name} ({recipe_url})")
+                print("Additional ingredients required:")  # Changed "Ingredients:" to "Additional ingredients required:"
+                for index, ingredient in enumerate(recipe_ingredients, start=1):
+                    print(f"{index}. {ingredient}")
+                break
         else:
             recipe_url, recipe_name, recipe_ingredients = parser_recipe(ingredient, website)
             if recipe_url != "No Recipe Found":
-                st.write(f"Recipe from {website}: {recipe_name} ({recipe_url})")
-                st.write("Additional ingredients required:")  # Changed "Ingredients:" to "Additional ingredients required:"
+                print(f"Recipe from {website}: {recipe_name} ({recipe_url})")
+                print("Additional ingredients required:")  # Changed "Ingredients:" to "Additional ingredients required:"
                 for index, ingredient in enumerate(recipe_ingredients, start=1):
-                    st.write(f"{index}. {ingredient}")
+                    print(f"{index}. {ingredient}")
                 break
     else:
-        st.write("No recipe found on any website for this ingredient.")
-
+        print("No recipe found on any website for this ingredient.")
+    
 
 #images
 st.divider()
